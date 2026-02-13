@@ -9,6 +9,11 @@ default-run  = "step_01_hello_world"
 name = "step_01_hello_world"
 path = "./src/bin/step_01_hello_world.rs"
 
+[[bin]]
+
+name = "step_02_leds"
+path = "./src/bin/step_02_leds.rs"
+
 [dependencies]
 esp-hal = { version = "~1.0", features = ["defmt", "esp32s3", "unstable"] }
 
@@ -29,6 +34,8 @@ esp-println      = { version = "0.16.1", features = ["defmt-espflash", "esp32s3"
 
 critical-section = "1.2.0"
 static_cell      = "2.1.1"
+disobey2026badge = "0.1.2"
+palette = { version = "0.7.6", default-features = false, features = ["alloc", "approx", "libm", "named", "named_from_str", "phf"] }
 
 
 [profile.dev]
