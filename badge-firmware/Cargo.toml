@@ -39,6 +39,8 @@ critical-section = "1.2.0"
 static_cell      = "2.1.1"
 disobey2026badge = "0.1.2"
 palette = { version = "0.7.6", default-features = false, features = ["alloc", "approx", "libm", "named", "named_from_str", "phf"] }
+embassy-sync = { version = "0.7.2", features = ["defmt"] }
+embassy-futures = { version = "0.1.2", features = ["defmt"] }
 
 
 [profile.dev]
