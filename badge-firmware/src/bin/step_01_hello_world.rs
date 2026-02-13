@@ -29,7 +29,6 @@ esp_bootloader_esp_idf::esp_app_desc!();
     clippy::large_stack_frames,
     reason = "it's not unusual to allocate larger buffers etc. in main"
 )]
-
 #[esp_rtos::main]
 async fn main(_spawner: Spawner) -> ! {
     // Initialise the hardware with default options

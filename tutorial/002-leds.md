@@ -101,3 +101,8 @@ Run the code with `cargo run --bin step_02_leds` and enjoy the blinkenlights.
 So far we are doing very much one thing – changing our LED colour – despite having a full-blown asynchronous execution framework with bells and whistles. In the third step, we will move this to its own _task_, showcasing how useful Embassy can be.
 
 [Go to the third step](003-tasks.md)
+
+# Suggested learning tasks
+
+* Easy: Change the palette to something that suits your personal frivolities and flamboyances better.
+* Medium: Make the palette interpolate from one color to another on a shorter timer.

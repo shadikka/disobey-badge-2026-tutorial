@@ -40,6 +40,7 @@ dependencies = [
  "embassy-futures",
  "embassy-sync 0.7.2",
  "embassy-time",
+ "embedded-graphics",
  "esp-alloc",
  "esp-bootloader-esp-idf",
  "esp-hal",

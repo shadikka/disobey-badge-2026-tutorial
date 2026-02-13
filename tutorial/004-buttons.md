@@ -177,3 +177,8 @@ Run the code with `cargo run --bin step_04_buttons`, press some buttons on the b
 So far we have not touched our biggest and prettiest peripheral: our OLED display! So, in the fifth and final step of this tutorial, we finally draw (the rest of the) owl on it.
 
 **[Go to the fifth step](005-display.md)!**
+
+# Suggested learning tasks
+
+* Easy: Tweak the palette, find colours that look prettier to you!
+* Hard: Dynamically change the colour based on button presses: maybe make left/right change the hue, and up/down change the brightness? The `palette` crate also has `Hsv` colours to make this easier.

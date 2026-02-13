@@ -14,7 +14,7 @@ There is also a secondary goal: to show that embedded programming has come very 
 
 # Step 1: Required software
 
-You will need to install two crucial pieces of software: the Rust toolchain itself with `rustup`, *and* the ESP32-specific parts and versions of the Rust toolchain with `espup` – in this order.
+You will need to install three crucial pieces of software: the Rust toolchain itself with `rustup`, the ESP32-specific parts and versions of the Rust toolchain with `espup` (in this order), and `espflash`.
 
 ## rustup
 
@@ -39,6 +39,10 @@ In order to run `espup` **or compile any step of this tutorial** you need to run
 This command needs to be run for every shell session, which means you might want to add it to your `.profile` or equivalent. See [espup's README](https://github.com/esp-rs/espup?tab=readme-ov-file#environment-variables-setup) for more details.
 
 To install the Rust toolchain for ESP microcontrollers, run `espup install`.
+
+## Installing espflash
+
+To install `espflash`, simply run `cargo install espflash --locked`.
 
 # Step 2: Compile the firmware
 

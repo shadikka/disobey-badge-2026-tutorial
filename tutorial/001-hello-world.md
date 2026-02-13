@@ -190,3 +190,7 @@ In this step of the tutorial, we basically just introduced ready-made crates (li
 In the second step of the tutorial, we start using the most important part of any electronics project: the LEDs.
 
 [**Go to the second step!**](002-leds.md)
+
+# Suggested learning steps
+
+* None, just proceed with the tutorial for now.

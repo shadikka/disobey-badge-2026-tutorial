@@ -87,3 +87,7 @@ When you run `cargo run --bin step_03_tasks`, you see that your LEDs blink and y
 Running one task with just a delay loop in another task is not really very interesting in practice, even though it's a major change in the underpinning architecture.
 
 So let's make it more interesting [in the fourth step](004-buttons.md)!
+
+# Suggested learning tasks
+
+* Easy: Spawn another task that just logs messages using `info!`.
