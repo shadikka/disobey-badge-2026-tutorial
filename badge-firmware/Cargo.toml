@@ -17,6 +17,10 @@ path = "./src/bin/step_02_leds.rs"
 name = "step_03_tasks"
 path = "./src/bin/step_03_tasks.rs"
 
+[[bin]]
+name = "step_04_buttons"
+path = "./src/bin/step_04_buttons.rs"
+
 [dependencies]
 esp-hal = { version = "~1.0", features = ["defmt", "esp32s3", "unstable"] }
 

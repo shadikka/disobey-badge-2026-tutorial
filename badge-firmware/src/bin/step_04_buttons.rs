@@ -14,7 +14,6 @@ use embassy_sync::{
     blocking_mutex::raw::CriticalSectionRawMutex,
     pubsub::{PubSubChannel, Publisher, Subscriber},
 };
-use embassy_time::{Duration, Timer};
 use esp_hal::timer::timg::TimerGroup;
 use esp_println as _;
 
@@ -30,18 +29,19 @@ extern crate alloc;
 
 #[derive(Clone, Copy, defmt::Format)]
 enum ButtonPressEvent {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
-    STICK,
+    Up,
+    Down,
+    Left,
+    Right,
+    Stick,
     A,
     B,
-    START,
-    SELECT,
+    Start,
+    Select,
 }
 
-static BUTTON_CHANNEL: PubSubChannel<CriticalSectionRawMutex, ButtonPressEvent, 8, 2, 1> = PubSubChannel::new();
+static BUTTON_CHANNEL: PubSubChannel<CriticalSectionRawMutex, ButtonPressEvent, 8, 2, 1> =
+    PubSubChannel::new();
 type ButtonSubscriber = Subscriber<'static, CriticalSectionRawMutex, ButtonPressEvent, 8, 2, 1>;
 type ButtonPublisher = Publisher<'static, CriticalSectionRawMutex, ButtonPressEvent, 8, 2, 1>;
 
@@ -66,23 +66,28 @@ const PALETTE: [Rgb<Srgb, u8>; 9] = [
 async fn led_task(mut subscriber: ButtonSubscriber, leds: &'static mut Leds<'static>) {
     loop {
         let event = subscriber.next_message_pure().await;
+        // This is purposefully verbose for the sake of simplicity here.
+        // Normally we would use something like the `num_enum` crate instead.
         let color = match event {
-            ButtonPressEvent::UP => PALETTE[0],
-            ButtonPressEvent::DOWN => PALETTE[1],
-            ButtonPressEvent::LEFT => PALETTE[2],
-            ButtonPressEvent::RIGHT => PALETTE[3],
-            ButtonPressEvent::STICK => PALETTE[4],
+            ButtonPressEvent::Up => PALETTE[0],
+            ButtonPressEvent::Down => PALETTE[1],
+            ButtonPressEvent::Left => PALETTE[2],
+            ButtonPressEvent::Right => PALETTE[3],
+            ButtonPressEvent::Stick => PALETTE[4],
             ButtonPressEvent::A => PALETTE[5],
             ButtonPressEvent::B => PALETTE[6],
-            ButtonPressEvent::START => PALETTE[7],
-            ButtonPressEvent::SELECT => PALETTE[8],
+            ButtonPressEvent::Start => PALETTE[7],
+            ButtonPressEvent::Select => PALETTE[8],
         };
         leds.fill(color);
         leds.update().await;
-        Timer::after(Duration::from_secs(1)).await;
     }
 }
 
+#[allow(
+    clippy::large_stack_frames,
+    reason = "This still works on the hardware with no issues"
+)]
 #[task]
 async fn button_task(publisher: ButtonPublisher, buttons: &'static mut Buttons) {
     loop {
@@ -99,18 +104,18 @@ async fn button_task(publisher: ButtonPublisher, buttons: &'static mut Buttons) 
         ])
         .await
         {
-            ((), 0) => publisher.publish(ButtonPressEvent::UP).await,
-            ((), 1) => publisher.publish(ButtonPressEvent::DOWN).await,
-            ((), 2) => publisher.publish(ButtonPressEvent::LEFT).await,
-            ((), 3) => publisher.publish(ButtonPressEvent::RIGHT).await,
-            ((), 4) => publisher.publish(ButtonPressEvent::STICK).await,
+            ((), 0) => publisher.publish(ButtonPressEvent::Up).await,
+            ((), 1) => publisher.publish(ButtonPressEvent::Down).await,
+            ((), 2) => publisher.publish(ButtonPressEvent::Left).await,
+            ((), 3) => publisher.publish(ButtonPressEvent::Right).await,
+            ((), 4) => publisher.publish(ButtonPressEvent::Stick).await,
             ((), 5) => publisher.publish(ButtonPressEvent::A).await,
             ((), 6) => publisher.publish(ButtonPressEvent::B).await,
-            ((), 7) => publisher.publish(ButtonPressEvent::START).await,
-            ((), 8) => publisher.publish(ButtonPressEvent::SELECT).await,
+            ((), 7) => publisher.publish(ButtonPressEvent::Start).await,
+            ((), 8) => publisher.publish(ButtonPressEvent::Select).await,
             _ => unreachable!(),
         }
-    }    
+    }
 }
 
 #[allow(
