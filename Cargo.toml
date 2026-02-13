@@ -10,9 +10,12 @@ name = "step_01_hello_world"
 path = "./src/bin/step_01_hello_world.rs"
 
 [[bin]]
-
 name = "step_02_leds"
 path = "./src/bin/step_02_leds.rs"
+
+[[bin]]
+name = "step_03_tasks"
+path = "./src/bin/step_03_tasks.rs"
 
 [dependencies]
 esp-hal = { version = "~1.0", features = ["defmt", "esp32s3", "unstable"] }
