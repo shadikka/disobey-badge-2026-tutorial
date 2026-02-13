@@ -179,6 +179,10 @@ Finally, you see our own application output:
 > [!TIP]
 > We have a lot of binaries in `src/bin/` – how does `cargo` know which to run? The answer is that we either tell it manually with the `--bin` argument, or it follows the default as given in `Cargo.toml`. (Line 6 in our case.)
 
+## Running the code
+
+You already should have done so, but you can run the code with `cargo run` (or `cargo run --bin step_01_hello_world`).
+
 # Onto the second step of our tutorial
 
 In this step of the tutorial, we basically just introduced ready-made crates (libraries, frameworks) and connected them together like a jigsaw puzzle. However, we are not actually doing **anything related to this badge in particular**: this code would run on (almost) any ESP32-S3 hardware, from devkits to smart plugs!
